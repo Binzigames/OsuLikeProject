@@ -7,6 +7,7 @@ import src.engine.NoteManager as Mn
 import src.ui.gameFragments as gF
 
 ui = gF.InGameMenus()
+
 #---------------------------------> bools
 song_start_time = None
 current_tab_index = 0
@@ -17,6 +18,7 @@ time_per_step = 0.5
 def draw_game():
     global current_tab_index
 
+    ui.handle_input()
     ui.update_notes()
     ui.draw_notes()
 
