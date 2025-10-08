@@ -19,7 +19,7 @@ def draw_game():
     global current_tab_index
 
     ui.handle_input()
-    ui.update_notes()
+    ui.update_notes(Mn.bps)
     ui.draw_notes()
 
     # >reading tabs

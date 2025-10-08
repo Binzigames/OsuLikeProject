@@ -40,10 +40,10 @@ class InGameMenus:
 
 
     #---------------------------------> update notes
-    def update_notes(self):
+    def update_notes(self , bps):
         for note in self.notes:
             if note["active"]:
-                note["y"] += 1
+                note["y"] += bps // 12
                 if note["y"] > pr.get_screen_height() + 100:
                     note["active"] = False
                     self.combo = 0
