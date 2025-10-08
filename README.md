@@ -53,7 +53,7 @@ rhythm-forge/
 │  │  ├─ beat_mapper.py
 │  │  └─ feature_extractor.py
 │  ├─ ui/
-│  │  └─ hud.py
+│  │  └─ game fragments.py
 │  └─ data/
 │     ├─ data.py
 │     └─ song_meta.json
