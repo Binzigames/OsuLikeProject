@@ -1,7 +1,9 @@
 #---------------------------------> importing
+from typing import Final
+
 import pyray as pr
 import sys
-import time
+import os
 
 from src.engine import NoteManager as Mn
 from src.ui import gameFragments as gF
@@ -32,5 +34,17 @@ def game_cycle():
 
 #---------------------------------> exit
 def game_exit():
+    if os.path.exists("src/tmp") and os.path.isdir("src/tmp"):
+        print("TMP : clearing")
+        for filename in os.listdir("src/tmp"):
+            file_path = os.path.join("src/tmp", filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+            else:
+                pass
+
+
+    else:
+        pass
     pr.close_window()
     sys.exit(0)

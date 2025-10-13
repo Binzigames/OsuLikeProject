@@ -108,9 +108,9 @@ class InGameMenus:
                         note["active"] = False
                         self.score += 100
                         self.combo += 1
-                        print(f"✅ HIT lane {lane_index}")
+                        print(f" HIT lane {lane_index}")
                         return
-        print(f"❌ MISS lane {lane_index}")
+        print(f" MISS lane {lane_index}")
         self.combo = 0
 
 #---------------------------------> song select menu
@@ -131,7 +131,7 @@ class SongSelectMenu:
         songs = []
         if not os.path.exists(self.folder):
             os.makedirs(self.folder)
-            print("⚠️ Folder not found, created:", self.folder)
+            print("Folder not found, created:", self.folder)
             return songs
 
         for file in os.listdir(self.folder):
@@ -142,7 +142,7 @@ class SongSelectMenu:
                         data = json.load(f)
                         songs.append(data)
                 except Exception as e:
-                    print(f"❌ Failed to load {file}: {e}")
+                    print(f"Failed to load {file}: {e}")
         return songs
 
     # Handle input (menu & game)
@@ -186,7 +186,7 @@ class SongSelectMenu:
         pr.draw_text(self.title, 80, 60, 40, pr.WHITE)
 
         if not self.songs:
-            pr.draw_text("⚠️ No generated songs found!", 120, 200, 25, pr.RED)
+            pr.draw_text("No generated songs found!", 120, 200, 25, pr.RED)
             return
 
         y = 180
@@ -196,7 +196,7 @@ class SongSelectMenu:
             pr.draw_text(text, 120, y, 28, color)
             y += 40
 
-        pr.draw_text("↑↓ Navigate  |  ENTER Play  |  ESC Back", 80, pr.get_screen_height() - 60, 20, pr.LIGHTGRAY)
+        pr.draw_text("up / down Navigate  |  ENTER Play  |  ESC Back", 80, pr.get_screen_height() - 60, 20, pr.LIGHTGRAY)
 
 
 

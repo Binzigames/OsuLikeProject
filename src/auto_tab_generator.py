@@ -6,12 +6,12 @@ import json
 
 #---------------------------------> math dance
 def generate_tabs(audio_path, lane_count=4, complexity=0.1, sensitivity=1.0, min_interval=0.1):
-    print(f"🎧 Processing: {audio_path}")
+    print(f"Processing: {audio_path}")
 
     try:
         y, sr = librosa.load(audio_path, mono=True)
     except Exception as e:
-        print(f"❌ Error loading {audio_path}: {e}")
+        print(f"Error loading {audio_path}: {e}")
         return None
 
     # Detect BPM
@@ -42,7 +42,7 @@ def generate_tabs(audio_path, lane_count=4, complexity=0.1, sensitivity=1.0, min
             "lanes": lanes
         })
 
-    print(f"✅ {os.path.basename(audio_path)} — BPM: {bpm:.1f}, notes: {len(tabs)}")
+    print(f"{os.path.basename(audio_path)} — BPM: {bpm:.1f}, notes: {len(tabs)}")
 
     return {
         "song_name": os.path.splitext(os.path.basename(audio_path))[0],
@@ -62,7 +62,7 @@ def generate_all_tabs_from_folder(folder_path="src/music", output_folder="src/tm
     songs = [f for f in os.listdir(folder_path) if f.lower().endswith(supported_formats)]
 
     if not songs:
-        print(f"⚠️ No audio files found in {folder_path}")
+        print(f"No audio files found in {folder_path}")
         return
 
     for song in songs:
@@ -72,6 +72,6 @@ def generate_all_tabs_from_folder(folder_path="src/music", output_folder="src/tm
             out_path = os.path.join(output_folder, f"{result['song_name']}.json")
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump(result, f, indent=2, ensure_ascii=False)
-            print(f"💾 Saved: {out_path}")
+            print(f"Saved: {out_path}")
 
-    print("\n✅ All songs processed!")
+    print("\nAll songs processed!")
