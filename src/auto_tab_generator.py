@@ -5,7 +5,7 @@ import os
 import json
 
 #---------------------------------> math dance
-def generate_tabs(audio_path, lane_count=4, complexity=0.2, sensitivity=1.0, min_interval=0.1):
+def generate_tabs(audio_path, lane_count=4, complexity=0.1, sensitivity=1.0, min_interval=0.1):
     print(f"🎧 Processing: {audio_path}")
 
     try:
@@ -51,7 +51,7 @@ def generate_tabs(audio_path, lane_count=4, complexity=0.2, sensitivity=1.0, min
     }
 
 #---------------------------------> load tabs
-def generate_all_tabs_from_folder(folder_path="music", output_folder="tmp"):
+def generate_all_tabs_from_folder(folder_path="src/music", output_folder="src/tmp"):
     folder_path = os.path.abspath(folder_path)
     output_folder = os.path.abspath(output_folder)
 
