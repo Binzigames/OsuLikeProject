@@ -118,13 +118,18 @@ import os
 import json
 
 class SongSelectMenu:
-    def __init__(self, music_folder="tmp"):
+    def __init__(self, music_folder="src/tmp"):
         self.folder = music_folder
         self.songs = self.load_songs()
         self.selected = 0
         self.state = "menu"  # "menu" or "game"
         self.game = None
-        self.title = "🎵 Select a Song"
+        self.title = "Select a Song"
+
+    def refresh(self):
+        global menu
+        if menu.state == "menu":
+            menu.songs = menu.load_songs()
 
     # Load all JSON songs
     def load_songs(self):
@@ -133,7 +138,6 @@ class SongSelectMenu:
             os.makedirs(self.folder)
             print("Folder not found, created:", self.folder)
             return songs
-
         for file in os.listdir(self.folder):
             if file.endswith(".json"):
                 path = os.path.join(self.folder, file)
@@ -155,6 +159,8 @@ class SongSelectMenu:
             if pr.is_key_pressed(pr.KeyboardKey.KEY_ENTER):
                 if self.songs:
                     self.start_game(self.songs[self.selected])
+            if pr.is_key_pressed(pr.KeyboardKey.KEY_R):
+                self.refresh()
         elif self.state == "game":
             self.game.handle_input()
             if pr.is_key_pressed(pr.KeyboardKey.KEY_ESCAPE):
@@ -196,12 +202,14 @@ class SongSelectMenu:
             pr.draw_text(text, 120, y, 28, color)
             y += 40
 
-        pr.draw_text("up / down Navigate  |  ENTER Play  |  ESC Back", 80, pr.get_screen_height() - 60, 20, pr.LIGHTGRAY)
+        pr.draw_text("up / down Navigate  |  ENTER Play  |  ESC exit", 80, pr.get_screen_height() - 60, 20, pr.LIGHTGRAY)
+        pr.draw_text("R refresh page", 5,20, 20,
+                     pr.LIGHTGRAY)
 
 
 
 #---------------------------------> globals
-menu = SongSelectMenu("src/tmp")
+menu = SongSelectMenu()
 
 #---------------------------------> draw event
 def draw_ev():
@@ -215,3 +223,7 @@ def update_ev():
     if menu:
         menu.handle_input()
         menu.update()
+
+
+
+

@@ -17,9 +17,9 @@ song_start_time = None
 #---------------------------------> main initialization
 def when_game_start(Wx, Wy, Wname):
     global menu
+    generate_all_tabs_from_folder()
     pr.init_window(Wx, Wy, Wname)
     pr.set_target_fps(60)
-    generate_all_tabs_from_folder()
 
 #---------------------------------> main game loop
 def game_cycle():
@@ -42,8 +42,6 @@ def game_exit():
                 os.remove(file_path)
             else:
                 pass
-
-
     else:
         pass
     pr.close_window()
